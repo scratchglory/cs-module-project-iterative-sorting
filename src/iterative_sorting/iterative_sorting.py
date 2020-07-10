@@ -1,13 +1,16 @@
 # TO-DO: Complete the selection_sort() function below
 def selection_sort(arr):
-    # loop through n-1 elements
+    # loop through n-1 elements, the whole array
     for i in range(0, len(arr) - 1):
         cur_index = i
+        # starts at our cur_index
         smallest_index = cur_index
         # TO-DO: find next smallest element
         # (hint, can do in 3 loc)
+        # iterate through the unsorted portion of the array, finding the index of the smallest element
 
         for j in range(i + 1, len(arr)):
+            # update our smalles_index variable, if value < smallest_index element
             if arr[smallest_index] > arr[j]:
                 smallest_index = j
 
@@ -19,14 +22,37 @@ def selection_sort(arr):
 
 
 # TO-DO:  implement the Bubble Sort function below
-def bubble_sort(arr):
-    for i in range(0, len(arr) - 1):
-        for j in range(0, len(arr) - 1 - i):
-            if arr[j] > arr[j + 1]:
-                arr[j], arr[j+1] = arr[j+1], arr[j]
+# def bubble_sort(arr):
+#     for i in range(0, len(arr) - 1):  # outer for loop
+#         # INNER for loop; j will go from 0 to n - 1 because the last item in the list is already sorted
+#         for j in range(0, len(arr) - 1 - i):
+#             if arr[j] > arr[j + 1]:
+#                 arr[j], arr[j+1] = arr[j+1], arr[j]
+#     return arr
+
+# recursive implementation
+# have to pass in unsorted length
+def bubble_sort(arr, unsorted_length):
+    # recursive implementation of bubble sort
+    # base case
+    # once we get to an empty unsorted portion, then everything is sorted
+    # how to move closer to base?
+    for i in range(0, unsorted_length - 1):
+        if arr[i] > arr[i + 1]:
+            # swaps them if the two elements aren't in order
+            arr[i], arr[i+1] = arr[i+1], arr[i]
+
+    # must run the swapping first before the recursive
+    # we've done one iteration of the swapping, check to see if there's more sorting to do
+    if unsorted_length > 0:
+        bubble_sort(arr, unsorted_length - 1)
+
     return arr
 
 
+arr = [4, 3, 67, 34, 29, 30, 2, 15, 6]
+bubble_sort(arr, len(arr))
+print(arr)
 '''
 STRETCH: implement the Counting Sort function below
 
